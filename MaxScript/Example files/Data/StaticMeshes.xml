@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<static_meshes>
+	<static_mesh name="Box001" filename="D:\Game\Data\Level\meshes\Box001.mesh"> </static_mesh>
+	<static_mesh name="Box002" filename="D:\Game\Data\Level\meshes\Box002.mesh"> </static_mesh>
+	<static_mesh name="Box003" filename="D:\Game\Data\Level\meshes\Box003.mesh"> </static_mesh>
+	<static_mesh name="Box004" filename="D:\Game\Data\Level\meshes\Box004.mesh"> </static_mesh>
+	<static_mesh name="Box005" filename="D:\Game\Data\Level\meshes\Box005.mesh"> </static_mesh>
+	<static_mesh name="Box006" filename="D:\Game\Data\Level\meshes\Box006.mesh"> </static_mesh>
+	<static_mesh name="Box007" filename="D:\Game\Data\Level\meshes\Box007.mesh"> </static_mesh>
+	<static_mesh name="Box008" filename="D:\Game\Data\Level\meshes\Box008.mesh"> </static_mesh>
+    
+</static_meshes>

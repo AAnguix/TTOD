@@ -168,8 +168,9 @@ function ExportSubMeshes Obj _file =
 	)
 	for i=1 to l_Vertexs.count do
 	(
-		WriteShort _file l_Vertexs[i].count #unsigend
 		WriteShort _file 19 #unsigend --Vertex type
+		WriteShort _file l_Vertexs[i].count #unsigend
+		
 		for j=1 to l_Vertexs[i].count do
 		(
 			for k=1 to l_Vertexs[i][j].count do
