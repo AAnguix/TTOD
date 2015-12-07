@@ -1,24 +1,27 @@
 filein "Functions.ms"
 
-function ExportMaterial MaterialsExported _Material _File =
+function ExportMaterial MaterialsExported _Material _File obj=
 (
 	if (MaterialsExported.ContainsKey (_Material.name))==false then
 	(
 		format "\t<material name=\"%\">\n" _Material.name to:_File
 		format "\t\t<texture filename=\"%\"/>\n" (_Material.diffuseMap.filename) to:_File
+		--format "\t\t<texture filename=\"%\"/>\n" (openBitMap obj.material.diffuseMap.bitmap.filename).fileName to:_File
 		format "\t</material>\n" to:_File
 		MaterialsExported.Add _Material.name MaterialsExported.count
 	)
 )	
 
-function ExportMaterials =
+function ExportMaterials _Path=
 (
-	local file = createfile "D:\Game\Data\Level\materials.xml"
+	DoesItExist _Path	
+	local file = createfile (_Path+"\\Materials.xml")
 	format "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" to:file
 	format "<materials>\n" to:file 
 	local l_MaterialsExported=dotnetobject "System.Collections.Generic.Dictionary`2[System.String,System.Int16]"
 	
-	meshes = GetCores()
+	select geometry
+	meshes = $
 	
 	for i=1 to meshes.count do
 	(
@@ -26,13 +29,13 @@ function ExportMaterials =
 			(
 				for j=1 to meshes[i].material.count do
 				(
-					--format "\t<material name=\"%\" filename=\"%\">\n" (meshes[i].material[z].name) (meshes[i].material[z].diffuseMap.filename) to:file
-					ExportMaterial l_MaterialsExported meshes[i].material[j] file
+					
+					ExportMaterial l_MaterialsExported meshes[i].material[j] file meshes[i]
 				)
 			)
 			else
 			(
-				ExportMaterial l_MaterialsExported meshes[i].material file
+				ExportMaterial l_MaterialsExported meshes[i].material file meshes[i]
 			)
 	)
 	
@@ -40,6 +43,4 @@ function ExportMaterials =
 	
 	close file
 )
-
-ExportMaterials()
 

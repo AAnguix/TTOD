@@ -1,11 +1,12 @@
 filein "Functions.ms"
 	
-function RenderableObjects =
+function RenderableObjects  _Path=
 (
-	local file = createfile ((GetLevelName())+"RenderableObjects4.xml") 
+	local file = createfile (_Path+"\\RenderableObjects.xml")
 	format "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" to:file
 	format "<renderable_objects>\n" to:file
-	meshes= GetInstances()
+	select geometry
+	meshes= $
 	
 	for i = 1 to meshes.count  do
 	(
@@ -15,10 +16,10 @@ function RenderableObjects =
 		local pitch = GetPitch meshes[i].transform
 		local roll = GetRoll meshes[i].transform
 		local visibility = meshes[i].visibility
-		format "<mesh_instance name=\"%\" core_name=\"%\" pos=\"%\" yaw=\"%\"pitch=\"%\" roll=\"%\" visible=\"%\"/> \n" 	attname attname tform yaw pitch roll visibility to:file
+		format "<mesh_instance name=\"%\" core_name=\"%\" pos=\"% % %\" yaw=\"%\"pitch=\"%\" roll=\"%\" visible=\"%\"/> \n" 	attname attname tform.x tform.y tform.z yaw pitch roll visibility to:file
 	)
 	format "</renderable_objects>\n" to:file
 	close file 	
 )
 
-RenderableObjects()
+

@@ -1,19 +1,20 @@
 filein "Functions.ms"
 
-function ExportStaticMeshes =
+function ExportStaticMeshes _Path=
 (
-	local file = createfile ((GetLevelName())+"StaticMeshes.xml") 
+	local file = createfile (_Path+"\\StaticMeshes.xml")
 	format "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" to:file
 	format "<static_meshes>\n" to:file 
-	meshes= GetCores()
+	select geometry
+	meshes= $
 	
 	for i=1 to meshes.count do
 	(
-		format "\t<static_mesh name=\"%\" filename=\"%%\">\n" (meshes[i].name) (RelativePath()) (FileName meshes[i].material.diffuseMap.filename) to:file	
+		local somepath = "meshes\\"
+		format "\t<static_mesh name=\"%\" filename=\"%%.mesh\"/>\n" (meshes[i].name) somepath (meshes[i].name) to:file	
 	)
 	format "</static_meshes>\n" to:file	
 	close file
 )
 
-ExportStaticMeshes()
 	

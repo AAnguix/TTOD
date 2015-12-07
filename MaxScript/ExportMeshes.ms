@@ -1,10 +1,12 @@
 filein "Functions.ms"
 
-function ExportMesh Obj =
+function ExportMesh Obj _Path=
 (
-	--format "%\n" (GetStaticMeshesPath())
-	local file=fopen ((GetStaticMeshesPath())+Obj.name+".mesh") "wb"
 	
+	local myPath = (_Path+"\\meshes\\")
+	DoesItExist myPath	
+	local file=fopen (myPath+Obj.name+".mesh") "wb"
+
 	WriteHeader file
 	
 	ExportMeshMaterials Obj file
@@ -137,9 +139,12 @@ function ExportSubMeshes Obj _file =
 			l_MaterialId=1
 		
 		--Vértices de la cara
-		local Vtx1=getVert l_Obj IdxsFace.x
-		local Vtx2=getVert l_Obj IdxsFace.y
-		local Vtx3=getVert l_Obj IdxsFace.z
+		local Vtx11=getVert l_Obj IdxsFace.x
+		Vtx1 = GlobalToLocals l_Obj Vtx11
+		local Vtx21=getVert l_Obj IdxsFace.y
+		Vtx2 = GlobalToLocals l_Obj Vtx21
+		local Vtx31=getVert l_Obj IdxsFace.z
+		Vtx3 = GlobalToLocals l_Obj Vtx31
 		
 		--Normales
 		local Normal1=getNormal  l_Obj IdxsFace.x
@@ -168,7 +173,7 @@ function ExportSubMeshes Obj _file =
 	)
 	for i=1 to l_Vertexs.count do
 	(
-		WriteShort _file 19 #unsigend --Vertex type
+		WriteShort _file 37 #unsigend --Vertex type
 		WriteShort _file l_Vertexs[i].count #unsigend
 		
 		for j=1 to l_Vertexs[i].count do
@@ -179,8 +184,9 @@ function ExportSubMeshes Obj _file =
 			)
 		)
 	)
-	for i=1 to l_Vertexs.count do
-	(
+	for i=1 to l_Indexs.count do
+	(	
+		WriteShort _file 16 #unsigend
 		WriteShort _file l_Indexs[i].count #unsigend
 		for j=1 to l_Indexs[i].count do
 		(
@@ -208,4 +214,13 @@ function WriteIndex file Index =
 	WriteShort file Index  #unsigned
 )
 
-ExportMesh $
+--funcion para exportar toda la geometria
+fn ExportSceneMeshes _Path=
+(
+	select geometry
+	for i=1 to $.count do
+	(
+		ExportMesh $[i] _Path
+	)
+	)	
+	
