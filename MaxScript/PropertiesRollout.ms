@@ -39,11 +39,16 @@ rollout SetProperties DialogName width:250 height:400
 		PhysicsGenerateListBox.items=GenerateList
 		local LayerList=#("solid", "alpha_objects","alpha_blend_objects", "particles")
 		RenderLayerListBox.items=LayerList
-		
+		local _Lights = isLight()
+		if ( _Lights ==2 or _Lights ==4) do
+			(
+				LightsGroupBox.visible = false
+				LightExportCheckBox.visible = false
+			)
 		
 			
 		AnimModelText.text = classof $ as string
-		--VisibleCheckBox.checked = true
+		
 
 	)
 	
@@ -103,8 +108,8 @@ rollout SetProperties DialogName width:250 height:400
 					messagebox "Some selected objects are not Geometry" title:"ATTENTION"
 				)
 		) 
-		/*Para verificar si se le ha quitado el check
-		if (LightExportCheckBox.checked false) do
+		--Para verificar si se le ha quitado el check
+		if (LightExportCheckBox.checked=false) do
 		(
 			local _Lights = isLight()
 			if ( _Lights ==1 or _Lights ==3) then
@@ -117,7 +122,7 @@ rollout SetProperties DialogName width:250 height:400
 				)
 		)
 		
-		if (VisibleCheckBox.checked false) do 
+		if (VisibleCheckBox.checked=false) do 
 		(
 			local _Geometry = isGeometry()
 			if ( _Geometry ==1 or _Geometry ==3) then
@@ -129,7 +134,7 @@ rollout SetProperties DialogName width:250 height:400
 					messagebox "Some selected objects are not Geometry" title:"ATTENTION"
 				)
 		) 
-		*/
+		
 		
 	)
 )

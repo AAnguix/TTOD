@@ -16,7 +16,7 @@ function RenderableObjects  _Path=
 		local pitch = GetPitch meshes[i].transform
 		local roll = GetRoll meshes[i].transform
 		local visibility = meshes[i].visibility
-		format "<mesh_instance name=\"%\" core_name=\"%\" pos=\"% % %\" yaw=\"%\"pitch=\"%\" roll=\"%\" visible=\"%\"/> \n" 	attname attname tform.x tform.y tform.z yaw pitch roll visibility to:file
+		format "<mesh_instance name=\"%\" core_name=\"%\" pos=\"% % %\" yaw=\"%\" pitch=\"%\" roll=\"%\" visible=\"%\"/> \n" 	attname attname tform.x tform.y tform.z yaw pitch roll visibility to:file
 	)
 	format "</renderable_objects>\n" to:file
 	close file 	
