@@ -1,12 +1,13 @@
 filein "Functions.ms"
-
+texto ="D:\\cll"
 function ExportMaterial MaterialsExported _Material _File obj=
 (
 	if (MaterialsExported.ContainsKey (_Material.name))==false then
 	(
-		format "\t<material name=\"%\">\n" _Material.name to:_File
-		format "\t\t<texture filename=\"%\"/>\n" (_Material.diffuseMap.filename) to:_File
-		--format "\t\t<texture filename=\"%\"/>\n" (openBitMap obj.material.diffuseMap.bitmap.filename).fileName to:_File
+		Filename = filenameFromPath (openBitMap _Material.diffuseMap.bitmap.filename).fileName
+		format "\t<material name=\"%\" effect_technique=\"diffuse_technique\">\n" _Material.name to:_File
+		format "\t\t<texture filename=\"%\"/>\n"  Filename to:_File
+		
 		format "\t</material>\n" to:_File
 		MaterialsExported.Add _Material.name MaterialsExported.count
 	)
@@ -43,4 +44,3 @@ function ExportMaterials _Path=
 	
 	close file
 )
-

@@ -1,5 +1,16 @@
 filein "Functions.ms"
 
+function  WriteHeader _file =
+(
+	WriteShort _file 0xfe55 #unsigned
+)
+
+function  WriteFooter _file =
+(
+	WriteShort _file 0x55fe #unsigned
+)
+
+
 function ExportMesh Obj _Path=
 (
 	
@@ -18,15 +29,6 @@ function ExportMesh Obj _Path=
 	fclose file
 )
 
-function  WriteHeader _file =
-(
-	WriteShort _file 0xfe55 #unsigned
-)
-
-function  WriteFooter _file =
-(
-	WriteShort _file 0x55fe #unsigned
-)
 
 function ExportMeshMaterials Obj file =
 (
@@ -197,21 +199,6 @@ function ExportSubMeshes Obj _file =
 	(
 		delete l_Obj
 	)
-)
-
-function WriteVertex file vType vNum Vertex =
-(
-	WriteShort file vType  #unsigned
-	WriteShort file vNum #unsigned
-	
-	WriteShort file Vertex.x  #unsigned
-	WriteShort file Vertex.y  #unsigned
-	WriteShort file Vertex.z  #unsigned
-)
-
-function WriteIndex file Index =
-(
-	WriteShort file Index  #unsigned
 )
 
 --funcion para exportar toda la geometria
