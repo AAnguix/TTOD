@@ -98,6 +98,7 @@ utility Exporter "Exporter" width:180 height:316
 		RenderableObjects PathText.text
 		ExportStaticMeshes PathText.text
 		ExportMaterials PathText.text
+		CopySceneMaterials PathText.text
 	)
 	
 )
@@ -136,8 +137,9 @@ fn VerifyExportMeshCheck =
 
 fn VerifyCopyTexturesCheck =
 (
-		if CopyTexturesCheckBox.checked do
+	if ExportMeshCheckBox.checked do
 	(
-		CopyMaterials PathText.text
+		CopyMaterials  $selection PathText.text
+		messagebox "Materials copied" title:"ATTENTION"
 	)
 )

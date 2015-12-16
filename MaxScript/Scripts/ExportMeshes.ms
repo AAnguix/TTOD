@@ -9,26 +9,11 @@ function  WriteFooter _file =
 (
 	WriteShort _file 0x55fe #unsigned
 )
-
-
-function ExportMesh Obj _Path=
+function ExportMeshMaterial _Material file =
 (
-	
-	local myPath = (_Path+"\\meshes\\")
-	DoesItExist myPath	
-	local file=fopen (myPath+Obj.name+".mesh") "wb"
-
-	WriteHeader file
-	
-	ExportMeshMaterials Obj file
-	
-	ExportSubMeshes Obj file
-	
-	WriteFooter file
-	
-	fclose file
+	WriteShort file _Material.name.count #unsigned
+	WriteString file _Material.name
 )
-
 
 function ExportMeshMaterials Obj file =
 (
@@ -47,12 +32,6 @@ function ExportMeshMaterials Obj file =
 			ExportMeshMaterial Obj.material[i] file	
 		)
 	)
-)
-
-function ExportMeshMaterial _Material file =
-(
-	WriteShort file _Material.name.count #unsigned
-	WriteString file _Material.name
 )
 
 function CreateFullVertex Vtx Normal TUV = 
@@ -143,15 +122,18 @@ function ExportSubMeshes Obj _file =
 		--Vértices de la cara
 		local Vtx11=getVert l_Obj IdxsFace.x
 		Vtx1 = GlobalToLocals l_Obj Vtx11
+		Vtx1 = TranslationToRH Vtx1
 		local Vtx21=getVert l_Obj IdxsFace.y
 		Vtx2 = GlobalToLocals l_Obj Vtx21
+		Vtx2 = TranslationToRH Vtx2
 		local Vtx31=getVert l_Obj IdxsFace.z
 		Vtx3 = GlobalToLocals l_Obj Vtx31
-		
+		Vtx3 = TranslationToRH Vtx3
 		--Normales
 		local Normal1=getNormal  l_Obj IdxsFace.x
 		local Normal2=getNormal  l_Obj IdxsFace.y
 		local Normal3=getNormal  l_Obj IdxsFace.z
+		--OJO ARREGLAR ESTO POR EL CODIG DE JORDI
 		
 		--Índices de las coordenadas de textura
 		local IdxsMap=meshop.getMapFace l_Obj 1 i
@@ -164,6 +146,7 @@ function ExportSubMeshes Obj _file =
 		local l_Vertex1=CreateFullVertex Vtx1 Normal1 TUVMap1
 		local l_Vertex2=CreateFullVertex Vtx2 Normal2 TUVMap2
 		local l_Vertex3=CreateFullVertex Vtx3 Normal3 TUVMap3
+		
 		
 		local l_Id1=GetIndex l_Vertexs l_Vertex1 l_MaterialId
 		local l_Id2=GetIndex l_Vertexs l_Vertex2 l_MaterialId
@@ -201,6 +184,25 @@ function ExportSubMeshes Obj _file =
 	)
 )
 
+--MAIN
+function ExportMesh Obj _Path=
+(
+	
+	local myPath = (RelativePath _Path+"\\meshes\\")
+	DoesItExist myPath	
+	local file=fopen (myPath+Obj.name+".mesh") "wb"
+
+	WriteHeader file
+	
+	ExportMeshMaterials Obj file
+	
+	ExportSubMeshes Obj file
+	
+	WriteFooter file
+	
+	fclose file
+)
+
 --funcion para exportar toda la geometria
 fn ExportSceneMeshes _Path=
 (
@@ -210,4 +212,6 @@ fn ExportSceneMeshes _Path=
 		ExportMesh $[i] _Path
 	)
 	)	
+
+	
 	

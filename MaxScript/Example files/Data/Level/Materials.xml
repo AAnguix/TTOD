@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <materials>
 	<material name="01 - Default" effect_technique="diffuse_technique">
-		<texture filename="textures\bark.dds"/>
+		<texture filename="Data\Level\meshes\bark.dds"/>
 	</material>
 	<material name="02 - Default" effect_technique="diffuse_technique">
-		<texture filename="textures\seafloor.dds"/>
+		<texture filename="Data\Level\meshes\seafloor.dds"/>
 	</material>
 </materials>

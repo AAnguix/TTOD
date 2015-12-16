@@ -7,5 +7,5 @@
 <mesh_instance name="Box005" core_name="Box005" pos="-0.426416 0.372038 4.49991" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
 <mesh_instance name="Box006" core_name="Box006" pos="0.0 0.0 6.96901" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
 <mesh_instance name="Box007" core_name="Box007" pos="-4.03877 0.0 3.4845" yaw="0.0" pitch="25.5089" roll="28.9718" visible="true"/> 
-<mesh_instance name="Plane001" core_name="Plane001" pos="-5.45183 0.0 1.8893" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Plane001" core_name="Plane001" pos="-5.45183 0.0 1.8893" yaw="0.0" pitch="0.0" roll="12.9504" visible="true"/> 
 </renderable_objects>

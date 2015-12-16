@@ -1,8 +1,10 @@
 filein "Functions.ms"
-	
+
 function RenderableObjects  _Path=
 (
-	local file = createfile (_Path+"\\RenderableObjects.xml")
+	local myPath = (RelativePath _Path)
+	DoesItExist myPath
+	local file = createfile (myPath+"\\RenderableObjects.xml")
 	format "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" to:file
 	format "<renderable_objects>\n" to:file
 	select geometry

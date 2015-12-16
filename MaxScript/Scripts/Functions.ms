@@ -3,14 +3,10 @@ function GetLevelName =
 	return "D:\\Game\\Data\\Level\\"
 )
 
-function GetStaticMeshesPath =
+fn RelativePath _Path=
 (
-	return GetLevelName()+"\\meshes\\"
-)
-
-fn RelativePath =
-(
-	return "Data\\Level\\meshes"
+	local RelativePath = (_Path+"\\Data\\Level")
+	return RelativePath
 )
 
 fn FileName file =
