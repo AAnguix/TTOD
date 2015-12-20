@@ -26,21 +26,17 @@ function ExportLights  _Path=
 			local intensity = myLights[i].multiplier		
 			case  of
 			(
-				(Lighttype == #targetDirect): 
+				(Lighttype == #targetDirect or Lighttype == #freeDirect): 
 					(
 						local dir=(myLights[i].target.pos-myLights[i].pos)
 						format "<light name=\"%\" type=\"Directional\" pos=\"% % %\" dir=\"% % %\" color=\"% % %\" att_start_range=\"%\" att_end_range=\"%\" intensity=\"%\"/> \n" 	attname tform.x tform.y tform.z dir.x dir.y dir.z Lightcolor.r Lightcolor.g Lightcolor.b attstart attend intensity to:file
 					)
-				(Lighttype == #targetSpot): 
+				(Lighttype == #targetSpot or Lighttype == #freeSpot ): 
 					(
 						local dir=(myLights[i].target.pos-myLights[i].pos)
 						local hotspot = myLights[i].hotspot
 						local _Falloff = myLights[i].Falloff
 						format "<light name=\"%\" type=\"Spot\" pos=\"% % %\" dir=\"% % %\" color=\"% % %\" angle=\"%\" fall_off=\"%\" att_start_range=\"%\" att_end_range=\"%\" intensity=\"%\"/> \n" 	attname tform.x tform.y tform.z dir.x dir.y dir.z Lightcolor.r Lightcolor.g Lightcolor.b hotspot _Falloff attstart attend intensity to:file
-					)
-				(Lighttype == #freeSpot or Lighttype == #freeDirect): 
-					(
-						format "<light name=\"%\" type=\"%\" pos=\"% % %\" color=\"% % %\" att_start_range=\"%\" att_end_range=\"%\" intensity=\"%\"/> \n" 	attname Lighttype tform.x tform.y tform.z Lightcolor.r Lightcolor.g Lightcolor.b attstart attend intensity to:file
 					)
 				(Lighttype == #omni): 
 					(

@@ -1,4 +1,6 @@
 filein "Functions.ms"
+filein "NormalsCorrector.ms"
+filein "sphereB.ms"
 
 function  WriteHeader _file =
 (
@@ -100,6 +102,12 @@ function ExportSubMeshes Obj _file =
 		convertToMesh l_Obj
 	)
 	
+	UABCalcVertexsNormals l_Obj
+	
+	--Agregar la BoundingBox y la SphereBox
+	BoundingBox l_Obj _file
+	SphereBundle l_Obj _file
+	
 	local l_HasMultiMaterial=classof l_Obj.material==Multimaterial
 	local l_MaterialCount=1
 	if l_HasMultiMaterial then 
@@ -129,12 +137,19 @@ function ExportSubMeshes Obj _file =
 		local Vtx31=getVert l_Obj IdxsFace.z
 		Vtx3 = GlobalToLocals l_Obj Vtx31
 		Vtx3 = TranslationToRH Vtx3
-		--Normales
-		local Normal1=getNormal  l_Obj IdxsFace.x
-		local Normal2=getNormal  l_Obj IdxsFace.y
-		local Normal3=getNormal  l_Obj IdxsFace.z
-		--OJO ARREGLAR ESTO POR EL CODIG DE JORDI
 		
+		--Normales viejas
+		--local Normal1=getNormal  l_Obj IdxsFace.x
+		--local Normal2=getNormal  l_Obj IdxsFace.y
+		--local Normal3=getNormal  l_Obj IdxsFace.z
+		
+		--Normales nuevas
+		local FaceNormal=getFaceNormal l_Obj i
+		local SmoothValue=getFaceSmoothGroup l_Obj i
+		local Normal1=TranslationToRH(normalize (UABGetVertexNormal l_Obj IdxsFace.x SmoothValue FaceNormal)) 
+		local Normal2=TranslationToRH(normalize (UABGetVertexNormal l_Obj IdxsFace.y SmoothValue FaceNormal)) 
+		local Normal3=TranslationToRH(normalize (UABGetVertexNormal l_Obj IdxsFace.z SmoothValue FaceNormal)) 
+			
 		--Índices de las coordenadas de textura
 		local IdxsMap=meshop.getMapFace l_Obj 1 i
 		
