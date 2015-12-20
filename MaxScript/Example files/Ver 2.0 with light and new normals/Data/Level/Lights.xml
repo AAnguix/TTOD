@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lights>
+<light name="Omni001" type="Omni" pos="-1.84234 1.04251 2.75191" color="235.0 139.0 35.0" att_start_range="4.0" att_end_range="5.0" intensity="0.88"/> 
+<light name="Direct001" type="Directional" pos="11.808 7.48031 -11.5642" dir="8.04641 5.01768 -7.48031" color="255.0 227.0 35.0" att_start_range="4.0" att_end_range="5.0" intensity="0.16"/> 
+<light name="Spot001" type="Spot" pos="-8.22955 3.49598 -0.609539" dir="-1.79724 2.60676 -3.49598" color="29.0 143.0 249.0" angle="37.2" fall_off="61.6" att_start_range="11.1384" att_end_range="11.1384" intensity="1.0"/> 
+</lights>

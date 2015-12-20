@@ -1,0 +1,5 @@
+<animated_models>
+	<animated_model name="bot" path="data/AnimatedModels/bot/" />
+	<animated_model name="enemy" path="data/AnimatedModels/enemy/" />
+	<animated_model name="boss_enemy" path="data/AnimatedModels/boss_enemy/" />
+</animated_models>
