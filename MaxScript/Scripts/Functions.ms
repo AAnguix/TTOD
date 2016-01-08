@@ -135,3 +135,61 @@ fn isGeometry =
 			if o == Obj then(return 3)else(return 4)
 		)
 )
+
+fn isCamera =
+(
+	Local Obj = $selection.count
+		if Obj <2 then
+		(
+			if superclassof $ == camera then
+			(
+				return 1
+			)
+			else
+			( 
+				return 2
+			)
+		)
+		else 
+		(
+			o =0
+			for i=1 to Obj do
+			( 
+				
+				if superclassof $[i] == camera do
+				(o = o +1)
+				Format "esto es o %\n" o
+				Format "esto es obj %\n" obj
+			)
+			if o == Obj then(return 3)else(return 4)
+		)
+)
+
+	fn isAnimatedGeometry =
+(
+	Local Obj = $selection.count
+		if Obj <2 then
+		(
+			local key = $.position.controller.keys.count
+			if superclassof $ == GeometryClass and key != 0 then
+			(
+				return 1
+			)
+			else
+			( 
+				return 2
+			)
+		)
+		else 
+		(
+			o =0
+			for i=1 to Obj do
+			( 
+				local key = $[i].position.controller.keys.count
+				if superclassof $[i] == GeometryClass and key != 0 do
+				(o = o +1)
+				
+			)
+			if o == Obj then(return 3)else(return 4)
+		)
+)

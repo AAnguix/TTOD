@@ -19,7 +19,10 @@ Fn SphereBundle obj _file =
 		Tcenter = lCenter.x
 	)
 	local Radio = Tmax - Tcenter
-	WriteFloat _file Tcenter
+	--WriteFloat _file Tcenter
+	WriteFloat _file lCenter.x
+	WriteFloat _file lCenter.y
+	WriteFloat _file lCenter.z
 	WriteFloat _file Radio
 	)
 
@@ -27,7 +30,13 @@ fn BoundingBox obj _file =
 (	
 _min = obj.min
 _max = obj.max
-
+WriteFloat _file _min.x
+WriteFloat _file _min.y
+WriteFloat _file _min.z
+WriteFloat _file _max.x
+WriteFloat _file _max.y
+WriteFloat _file _max.z	
+/*
 v1 = TranslationToRH (GlobalToLocals obj [_min.x,_min.y,_min.z])
 WriteFloat _file v1.x
 WriteFloat _file v1.y
@@ -60,5 +69,6 @@ v8 = TranslationToRH (GlobalToLocals obj [_max.x,_max.y,_max.z])
 WriteFloat _file v8.x
 WriteFloat _file v8.y
 WriteFloat _file v8.z
+*/
 )	
 	

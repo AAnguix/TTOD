@@ -77,7 +77,7 @@ utility Exporter "Exporter" width:180 height:316
 	
 	on CameraButton pressed do
 	(   
-		RenderableObjects PathText.text
+		ExportCameras PathText.text
 	)
 	
 	on MaterialsButton pressed do
@@ -99,6 +99,9 @@ utility Exporter "Exporter" width:180 height:316
 		ExportStaticMeshes PathText.text
 		ExportMaterials PathText.text
 		CopySceneMaterials PathText.text
+		ExportCameras PathText.text
+		AnimatedCameraExport PathText.text
+		AnimatedObjectExport PathText.text
 	)
 	
 )

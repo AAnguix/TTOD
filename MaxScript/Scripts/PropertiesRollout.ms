@@ -3,7 +3,7 @@ if $selection.count <2 then (DialogName = $.name as string) else (DialogName = (
 --Global DialogName = $.name as string
 
 
-rollout SetProperties DialogName width:250 height:400
+rollout SetProperties "Box001" width:510 height:400
 (
 	
 	GroupBox RenderGroupBox "Render" pos:[8,5] width:235 height:120
@@ -29,8 +29,20 @@ rollout SetProperties DialogName width:250 height:400
 	GroupBox LightsGroupBox "Lights" pos:[8,272] width:235 height:53
 	checkbox LightExportCheckBox "Export" pos:[17,293] width:60 height:20	
 	
+	
+	
+	
+	GroupBox CameraGroupBox "Camera" pos:[263,272] width:235 height:53
+	radiobuttons CameraRadioButtons "CameraType" pos:[274,293] width:130 height:30 labels:#("cycle", "reverse") default:0 columns:2
+	checkbox CameraAnimCheck "Anim" pos:[410,293] width:60 height:20
+	
 	button GetButton "Get" pos:[10,370] width:80 height:20
 	button SetButton "Set" pos:[158,370] width:80 height:20
+	
+	GroupBox AnimatedModelGroupBox "Animated Model" pos:[263,8] width:235 height:53
+	checkbox AnimatedModelCheck "Animated Model" pos:[276,33] width:120 height:20
+	
+	
 	
 	on SetProperties open do
 	(
@@ -45,13 +57,24 @@ rollout SetProperties DialogName width:250 height:400
 				LightsGroupBox.visible = false
 				LightExportCheckBox.visible = false
 			)
-		
+		local _Camera = isCamera()
+		if ( _Camera ==2 or _Camera ==4) do
+			(
+				CameraGroupBox.visible = false
+				CameraRadioButtons.visible = false
+				CameraAnimCheck.visible = false
+			)
+		local _Animated = isAnimatedGeometry()
+		if ( _Animated ==2 or _Animated ==4) do
+			(
+				AnimatedModelGroupBox.visible = false
+				AnimatedModelCheck.visible = false
+			)
 			
 		AnimModelText.text = classof $ as string
 		
 
 	)
-	
 	on GetButton pressed do
 	(
 		
@@ -79,9 +102,74 @@ rollout SetProperties DialogName width:250 height:400
 
 		)
 	)
-	
 	on SetButton pressed do
 	(
+		if AnimatedModelCheck.checked do
+			(
+				Local Obj = $selection.count
+				if Obj <2 then
+				(
+					setUserProp $ "Animated_Object" true
+				)else
+				(
+					for x= 1 to Obj do
+					(
+						setUserProp $[x] "Animated_Object" true
+					)
+				)
+				
+				messagebox "Selected Object(s) set to Animated" title:"ATTENTION"
+			)
+		
+		if CameraRadioButtons.state == 1 do
+			(
+				Local Obj = $selection.count
+				if Obj <2 then
+				(
+					setUserProp $ "camera_type" "cycle"
+				)else
+				(
+					for x= 1 to Obj do
+					(
+						setUserProp $[x] "camera_type" "cycle"
+					)
+				)
+				messagebox "Selected Camera(s) set to cycle" title:"ATTENTION"
+			)
+			
+		if CameraRadioButtons.state == 2 do
+			(
+				Local Obj = $selection.count
+				if Obj <2 then
+				(
+					setUserProp $ "camera_type" "reverse"
+				)else
+				(
+					for x= 1 to Obj do
+					(
+						setUserProp $[x] "camera_type" "reverse"
+					)
+				)
+				messagebox "Selected Camera(s) set to reverse" title:"ATTENTION"
+			)
+			
+		if CameraAnimCheck.checked do
+			(
+				Local Obj = $selection.count
+				if Obj <2 then
+				(
+					setUserProp $ "Animated_Camera" true
+				)else
+				(
+					for x= 1 to Obj do
+					(
+						setUserProp $[x] "Animated_Camera" true
+					)
+				)
+				
+				messagebox "Selected Camera(s) set to Animated" title:"ATTENTION"
+			)
+			
 		if LightExportCheckBox.checked do
 		(
 			local _Lights = isLight()
@@ -138,5 +226,4 @@ rollout SetProperties DialogName width:250 height:400
 		
 	)
 )
-
 createDialog SetProperties

@@ -183,14 +183,12 @@ function ExportSubMeshes Obj _file =
 				WriteFloat _file l_Vertexs[i][j][k]
 			)
 		)
-	)
-	for i=1 to l_Indexs.count do
-	(	
+		
 		WriteShort _file 16 #unsigend
 		WriteShort _file l_Indexs[i].count #unsigend
-		for j=1 to l_Indexs[i].count do
+		for z=1 to l_Indexs[i].count do
 		(
-			WriteShort _file l_Indexs[i][j] #unsigned
+			WriteShort _file l_Indexs[i][z] #unsigned
 		)
 	)
 	if l_ConvertToTriangleMesh then
@@ -226,7 +224,4 @@ fn ExportSceneMeshes _Path=
 	(
 		ExportMesh $[i] _Path
 	)
-	)	
-
-	
-	
+	)
