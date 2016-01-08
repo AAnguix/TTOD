@@ -26,3 +26,5 @@
 *.exe
 *.out
 *.app
+MaxScript/Scripts/test.ms
+MaxScript/Scripts/ExportMeshes-old.ms
