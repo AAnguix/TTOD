@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <materials>
-	<material name="01 - Default" effect_technique="diffuse_technique">
-		<texture filename="Data\Level\meshes\bark.dds"/>
+	<material name="boxesbit" effect_technique="diffuse_technique">
+		<texture filename="Data\Level\meshes\Concrete.Precast Structural Concrete.Smooth.jpg"/>
 	</material>
-	<material name="02 - Default" effect_technique="diffuse_technique">
-		<texture filename="Data\Level\meshes\seafloor.dds"/>
+	<material name="wall" effect_technique="diffuse_technique">
+		<texture filename="Data\Level\meshes\JP_Brick01_Bump.jpg"/>
+	</material>
+	<material name="Plane" effect_technique="diffuse_technique">
+		<texture filename="Data\Level\meshes\grass.jpg"/>
 	</material>
 </materials>

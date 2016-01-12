@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<camera_key_controller name="Camera_intro"> 
+	<key time="0.0" pos="-26.8859 9.80159 -6.46455" look_at="-20.3781 3.19479 8.47801" fov="0.602417" near_plane="1.0" far_plane="1000.0"/> 
+	<key time="4.66667" pos="0.963326 9.80159 -4.75075" look_at="-20.3781 1.67184 8.47801" fov="0.235158" near_plane="1.0" far_plane="1000.0"/> 
+	<key time="5.73333" pos="-12.2645 9.03728 2.90156" look_at="-20.3781 1.51945 8.47801" fov="0.199338" near_plane="1.0" far_plane="1000.0"/> 
+</camera_key_controller>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cameras> 
+<key_camera name="Camera001" filename="data/level/Cameras/Camera001.xml"/>
+</cameras>

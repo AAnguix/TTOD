@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <renderable_objects>
-<mesh_instance name="Box001" core_name="Box001" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Box002" core_name="Box002" pos="-3.88479 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Box003" core_name="Box003" pos="-8.323 1.3638 0.961836" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Box004" core_name="Box004" pos="-11.6544 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Box005" core_name="Box005" pos="-0.426416 0.372038 4.49991" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Box006" core_name="Box006" pos="0.0 0.0 6.96901" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Box007" core_name="Box007" pos="-4.03877 0.0 3.4845" yaw="0.0" pitch="25.5089" roll="28.9718" visible="true"/> 
-<mesh_instance name="Plane001" core_name="Plane001" pos="-5.45183 0.0 1.8893" yaw="0.0" pitch="0.0" roll="12.9504" visible="true"/> 
+<mesh_instance name="Box001" core_name="Box001" pos="10.2713 0.0 10.4602" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Box002" core_name="Box002" pos="-9.31425 0.0 10.4602" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Box003" core_name="Box003" pos="10.1392 0.0 -0.635879" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Box004" core_name="Box004" pos="-0.0845766 0.0 -0.449444" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Box005" core_name="Box005" pos="23.3071 0.0 5.13691" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Plane001" core_name="Plane001" pos="-2.30585 -0.1 4.66551" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<mesh_instance name="Box006" core_name="Box006" pos="6.9179 0.0 22.1306" yaw="90.0" pitch="0.0" roll="0.0" visible="true"/> 
+<animated_model name="Bot001" model_name="bot" pos="0.0 0.0 0.0" /> 
 </renderable_objects>
