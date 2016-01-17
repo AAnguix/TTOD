@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lights>
+<light name="FDirect001" type="Directional" pos="-9.56347 5.17354 15.0897" dir="0.0 0.0 0.0 " color="0.0 0.5 2.0" att_start_range="80.0" att_end_range="200.0" intensity="2.1"/> 
+</lights>
