@@ -44,16 +44,32 @@ float4 PS( PS_INPUT IN) : SV_Target
 		{
 			if(m_LightTypeArray[i]==0.0f) //OMNI
 			{
-				return float4(1.0f,0.0,0.0f,1.0f);
+				float3 lightDirection = m_LightPosition[i] - IN.WorldPos; //Punto final - Punto inicio
+				float l_Distance=length(lightDirection);
+				float l_Attenuation = 1 - saturate((l_Distance-m_LightAttenuationStartRangeArray[i])/(m_LightAttenuationEndRangeArray[i]-m_LightAttenuationStartRangeArray[i]));
+				lightDirection/=l_Distance; //Normalize
+					
+				float3 l_Normal=normalize(IN.WorldNormal);
+				
+				float l_DiffuseContrib=max(0.0, dot(l_Normal, lightDirection));
+				
+				float3 l_HalfWayVector=normalize(normalize(m_CameraPosition-IN.WorldPos)+lightDirection);
+				float l_SpecularContrib=pow(max(0, dot(l_HalfWayVector, l_Normal)), l_SpecularPower);
+				
+				float4 l_Texture=DiffuseTexture.Sample(LinearSampler, IN.UV);
+				
+				//Cálculo luces
+				float3 l_AmbientLight=l_Texture.xyz*m_LightAmbient.xyz;
+				
+				float3 l_DiffuseLight=l_DiffuseContrib * m_LightColor[i].xyz * l_Texture.xyz * m_LightIntensityArray[i] * l_Attenuation;
+				
+				float3 l_SpecularLight=l_SpecularContrib * m_LightColor[i].xyz * m_LightIntensityArray[i] * l_Attenuation; 
+				
+				return float4(l_AmbientLight+l_SpecularLight+l_DiffuseLight, l_Texture.a);
 			}
 			else if(m_LightTypeArray[i]==1.0f) //DIRECTIONAL
 			{
-				float3 Hn=normalize(normalize(m_CameraPosition-IN.WorldPos)-m_LightDirection[i]);	
-				float3 Nn=normalize(IN.WorldNormal);
-				float l_DiffuseContrib=max(0.0, dot(Nn, -m_LightDirection[i]))*m_LightIntensityArray[i];
-				float l_SpecularContrib=pow(max(0, dot(Hn, Nn)), l_SpecularPower)*m_LightIntensityArray[i];
-				float4 l_Texture=DiffuseTexture.Sample(LinearSampler, IN.UV);
-				return float4(l_Texture.xyz*m_LightAmbient.xyz+l_DiffuseContrib*m_LightColor[i].xyz*l_Texture.xyz+l_SpecularContrib*m_LightColor[i].xyz, l_Texture.a);
+				return float4(0.0f,1.0,0.0f,1.0f);
 			}
 			else if(m_LightTypeArray[i]==2.0f) //SPOT
 			{
