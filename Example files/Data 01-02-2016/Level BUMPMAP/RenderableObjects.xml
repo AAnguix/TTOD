@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<renderable_objects>
+<mesh_instance name="mango" core_name="mango" pos="1.0 0.0 12.0315" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
+<!--<mesh_instance name="Cylinder001" core_name="Cylinder001" pos="-0.664307 0.0 12.0315" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> -->
+</renderable_objects>

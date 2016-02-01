@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<materials>
+	<material name="Material #81" effect_technique="diffuse_technique">
+		<texture filename="Data\Level\meshes\Difuso.jpg"/>
+		<texture filename="Data\Level\meshes\Normal.jpg"/>
+	</material>
+	<material name="01 - Default" effect_technique="diffuse_technique">
+		<texture filename="Data\Level\meshes\Concrete.Precast Structural Concrete.Smooth.bump.jpg"/>
+	</material>
+</materials>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<camera_key_controller name="Camera001"> 
+<key time="0.0" pos="-16.1941 3.57777 -2.02528" look_at="-7.68359 3.57777 3.37563" fov="1.0470001" near_plane="1.0" far_plane="1000.0"/> 
+<key time="0.6625f" pos="-2.67017 3.57777 7.24734" look_at="5.76739 3.57777 5.97771" fov="1.0470001" near_plane="1.0" far_plane="1000.0"/> 
+<key time="1.33125f" pos="11.4523 3.57777 4.71018" look_at="19.8898 3.57777 3.44056" fov="1.0470001" near_plane="1.0" far_plane="1000.0"/> 
+<key time="2.03125f" pos="17.3723 3.57777 8.77944" look_at="13.5014 3.57777 18.0121" fov="1.0470001" near_plane="1.0" far_plane="1000.0"/> 
+<key time="2.6625f" pos="10.4338 3.57777 20.0394" look_at="-1.61898 3.57777 11.0034" fov="1.0470001" near_plane="1.0" far_plane="1000.0"/> 
+<key time="3.33125f" pos="-0.435222 80.9238 24.7481" look_at="6.5521 3.57777 0.61599" fov="1.0470001" near_plane="1.0" far_plane="1000.0"/> 
+</camera_key_controller> 

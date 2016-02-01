@@ -181,6 +181,7 @@ function ExportSubMeshes Obj _file =
 			for k=1 to l_Vertexs[i][j].count do
 			(
 				WriteFloat _file l_Vertexs[i][j][k]
+				format "% - %\n" j k
 			)
 		)
 		
@@ -200,11 +201,12 @@ function ExportSubMeshes Obj _file =
 --MAIN
 function ExportMesh Obj _Path=
 (
-	
 	local myPath = (RelativePath _Path+"\\meshes\\")
 	DoesItExist myPath	
 	local file=fopen (myPath+Obj.name+".mesh") "wb"
 
+	
+	format "% \n" myPath
 	WriteHeader file
 	
 	ExportMeshMaterials Obj file
