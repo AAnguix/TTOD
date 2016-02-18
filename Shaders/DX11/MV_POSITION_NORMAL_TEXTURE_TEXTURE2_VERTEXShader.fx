@@ -1,8 +1,5 @@
 #include "globals.fxh"
-
-Texture2D DiffuseTexture : register( t0 );
-Texture2D LightMapTexture : register( t1 );
-SamplerState LinearSampler : register( s0 );
+#include "samplers.fxh"
 
 //--------------------------------------------------------------------------------------
 struct VS_INPUT
@@ -35,8 +32,8 @@ PS_INPUT VS( VS_INPUT IN )
 //--------------------------------------------------------------------------------------
 float4 PS( PS_INPUT IN) : SV_Target
 {
-	float4 l_Texture=DiffuseTexture.Sample(LinearSampler, IN.UV);
-	float4 l_LightMap=LightMapTexture.Sample(LinearSampler, IN.UV);
+	float4 l_Texture=T0Texture.Sample(S0Sampler, IN.UV);
+	float4 l_LightMap=T1Texture.Sample(S1Sampler, IN.UV);
 	
 	return l_Texture * l_LightMap;
 }

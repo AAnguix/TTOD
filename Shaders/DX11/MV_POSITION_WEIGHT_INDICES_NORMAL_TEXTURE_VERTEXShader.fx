@@ -1,7 +1,7 @@
 //MV_POSITION_WEIGHT_INDICES_NORMAL_TEXTURE_VERTEXShader.fx
 #include "globals.fxh"
-Texture2D DiffuseTexture : register( t0 );
-SamplerState LinearSampler : register( s0 );
+#include "samplers.fxh"
+
 //--------------------------------------------------------------------------------------
 struct VS_INPUT
 {
@@ -66,5 +66,5 @@ PS_INPUT VS( VS_INPUT IN )
 //--------------------------------------------------------------------------------------
 float4 PS( PS_INPUT IN) : SV_Target
 {
-	return DiffuseTexture.Sample(LinearSampler, IN.UV);
+	return T0Texture.Sample(S0Sampler, IN.UV);
 } 
