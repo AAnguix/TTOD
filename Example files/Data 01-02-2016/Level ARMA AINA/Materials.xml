@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<materials>
-	<material name="Material #1" effect_technique="diffuse_technique">
-		<texture filename="Data\Level\meshes\Difuso.jpg"/>
-	</material>
-	<material name="02 - Default" effect_technique="diffuse_technique">
-		<texture filename="Data\Level\meshes\JP_Brick01_Bump.jpg"/>
-	</material>
-</materials>

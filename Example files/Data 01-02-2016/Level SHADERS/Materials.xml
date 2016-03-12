@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<materials>
-	<material name="01 - Default" effect_technique="lights_technique">
-		<texture filename="Data\Level\meshes\license plates.jpg"/>
-	</material>
-</materials>

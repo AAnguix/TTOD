@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<lights >
-<light name="FDirect001" type="Directional" pos="-9.56347 5.17354 15.0897" dir="1.0 0.0 0.0 " color="1.0 0.0 0.0" att_start_range="80.0" att_end_range="200.0" intensity="1.0"/>
-<light name="FSpot001" type="Spot" pos="5.0 0.0 0.0" dir="0.0 -1.0 0.0" color="0.0 1.0 0.0" angle="0.436332" fall_off="1.0472" att_start_range="8.0" att_end_range="10.0" intensity="1.5"/>
-<light name="FOmni001" type="Omni" pos="0.0 0.0 0.0" color="0.0 0.0 1.0" att_start_range="1.0" att_end_range="3.0" intensity="1.5"/>
-</lights>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<cameras> 
-<fixed_camera name="Camera001" position="8.19971 1.2052 4.18387" look_at="0.910889 1.2052 0.239288" fov="45.0" aspect="1.33333" near="0.0" far="1000.0"/>
-<key_camera name="Camera002" filename="data/level/Cameras/Camera002.xml"/>
-</cameras>

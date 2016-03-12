@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<renderable_objects>
-<mesh_instance name="Pyramid001" core_name="Pyramid001" pos="3.0 -1.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Pyramid002" core_name="Pyramid001" pos="0.0 -1.0 1.5" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<mesh_instance name="Sphere001" core_name="Sphere001" pos="0.0 -1.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" visible="true"/> 
-<!--<cinematic name="DestroyWall" file="Data/Cinematics/DestroyWall.xml" />-->
-</renderable_objects>

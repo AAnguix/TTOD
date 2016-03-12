@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<lights>
-<!--angle="0.436332" fall_off="1.0472" -->
-<light name="FSpot001" type="Spot" pos="0.0 5.0 0.0" dir="0.0 -1.0 0.0" color="1.0 1.0 0.0" angle="0.436332" fall_off="1.0472" att_start_range="8.0" att_end_range="10.0" intensity="1.5"/>
-</lights>

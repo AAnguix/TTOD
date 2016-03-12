@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<materials>
-	<material name="01 - Default" effect_technique="diffuse_technique">
-		<texture filename="Data\Level\meshes\BWom0001-M3-Head-D.jpg"/>
-	</material>
-</materials>

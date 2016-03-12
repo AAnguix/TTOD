@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<renderable_objects>
-<mesh_instance name="ArmaIli" core_name="ArmaIli" pos="-3.11793 0.0 0.0" yaw="-3.94973" pitch="1.32633" roll="1.62242" visible="true"/> 
-<mesh_instance name="Torus001" core_name="Torus001" pos="-20.9407 0.93396 0.250244" yaw="0.0" pitch="0.0" roll="65.833" visible="true"/> 
-</renderable_objects>

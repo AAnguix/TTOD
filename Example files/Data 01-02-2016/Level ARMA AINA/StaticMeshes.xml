@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<static_meshes>
-	<static_mesh name="ArmaIli" filename="Data\Level\meshes\ArmaIli.mesh"/>
-	<static_mesh name="Torus001" filename="Data\Level\meshes\Torus001.mesh"/>
-</static_meshes>
