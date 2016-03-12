@@ -3,7 +3,7 @@ if $selection.count <2 then (DialogName = $.name as string) else (DialogName = (
 --Global DialogName = $.name as string
 
 
-rollout SetProperties "Box001" width:510 height:400
+rollout SetProperties "Box001" width:510 height:474
 (
 	
 	GroupBox RenderGroupBox "Render" pos:[8,5] width:235 height:120
@@ -16,18 +16,21 @@ rollout SetProperties "Box001" width:510 height:400
 	edittext AnimModelText "" pos:[90,97] width:140 height:21 readOnly:true
 	
 	
-	GroupBox PhysicsGroupBox "Physics" pos:[8,136] width:235 height:70
+	GroupBox PhysicsGroupBox "Physics" pos:[8,136] width:235 height:110
 	checkbox GeneratePhysicsCheckBox "Generate" pos:[20,152] width:70 height:20
-	checkbox LayerCheckBox2 "Layer" pos:[20,175] width:60 height:20
+	checkbox PhysicsLayerCheckBox "Layer" pos:[20,216] width:60 height:20
 	dropdownList PhysicsGenerateListBox "" pos:[88,152] width:140 height:21
-	listbox PhysicsLayerListBox "" pos:[88,176] width:140 height:1
+	dropdownList PhysicsActorTypeBox "" pos:[88,180] width:140 height:21
+	listbox PhysicsLayerListBox "" pos:[88,216] width:140 height:1
 	
-	GroupBox LogicGroupBox "Logic" pos:[8,210] width:235 height:53
-	checkbox GenerateLogicCheckBox "Generate" pos:[20,228] width:70 height:20
-	listbox LogicGenerateListBox "" pos:[90,227] width:140 height:1
+	GroupBox LogicGroupBox "Logic" pos:[8,250] width:235 height:53
+	checkbox GenerateLogicCheckBox "Generate" pos:[20,278] width:70 height:20
+	listbox LogicGenerateListBox "" pos:[90,278] width:140 height:1
 	
-	GroupBox LightsGroupBox "Lights" pos:[8,272] width:235 height:53
-	checkbox LightExportCheckBox "Export" pos:[17,293] width:60 height:20	
+	GroupBox LightsGroupBox "Lights" pos:[8,322] width:235 height:53
+	checkbox LightExportCheckBox "Export" pos:[17,343] width:60 height:20
+	checkbox ShadowMapCheckBox "Gen. ShadowMap" pos:[72,343] width:102 height:20
+	checkbox LightStateCheckBox "Off State" pos:[178,343] width:61 height:20
 	
 	
 	
@@ -36,19 +39,26 @@ rollout SetProperties "Box001" width:510 height:400
 	radiobuttons CameraRadioButtons "CameraType" pos:[274,293] width:130 height:30 labels:#("cycle", "reverse") default:0 columns:2
 	checkbox CameraAnimCheck "Anim" pos:[410,293] width:60 height:20
 	
-	button GetButton "Get" pos:[10,370] width:80 height:20
-	button SetButton "Set" pos:[158,370] width:80 height:20
+	button GetButton "Get" pos:[10,450] width:80 height:20
+	button SetButton "Set" pos:[158,450] width:80 height:20
 	
 	GroupBox AnimatedModelGroupBox "Animated Model" pos:[263,8] width:235 height:53
-	checkbox AnimatedModelCheck "Animated Model" pos:[276,33] width:120 height:20
+	checkbox AnimatedModelCheck "Animated" pos:[276,33] width:120 height:20
+	dropdownList AnimatedModelTypeList "Model Type" pos:[374,17] width:120 height:40 selection:1
+	
 	
 	
 	
 	on SetProperties open do
 	(
 		
-		local GenerateList =# ("malla triangular", "forma convexa", "forma caja", "forma esfera", "forma plano", "forma cápsula")
+		--local GenerateList =# ("malla triangular", "forma convexa", "forma caja", "forma esfera", "forma plano", "forma cápsula")
+		local GenerateList =# ("Box", "Sphere", "Capsule", "Plane")
+		local ActorTypeList =# ("Static", "Dynamic", "Kinematic")
+		local AnimatedModelList =# ("Basic", "Has Normal", "Has Enviroment", "Has N+E")
+		AnimatedModelTypeList.items = AnimatedModelList
 		PhysicsGenerateListBox.items=GenerateList
+		PhysicsActorTypeBox.items= ActorTypeList
 		local LayerList=#("solid", "alpha_objects","alpha_blend_objects", "particles")
 		RenderLayerListBox.items=LayerList
 		local _Lights = isLight()
@@ -56,6 +66,8 @@ rollout SetProperties "Box001" width:510 height:400
 			(
 				LightsGroupBox.visible = false
 				LightExportCheckBox.visible = false
+				ShadowMapCheckBox.visible = false
+				LightStateCheckBox.visible = false
 			)
 		local _Camera = isCamera()
 		if ( _Camera ==2 or _Camera ==4) do
@@ -69,6 +81,7 @@ rollout SetProperties "Box001" width:510 height:400
 			(
 				AnimatedModelGroupBox.visible = false
 				AnimatedModelCheck.visible = false
+				AnimatedModelTypeList.visble = false 
 			)
 			
 		AnimModelText.text = classof $ as string
@@ -104,17 +117,36 @@ rollout SetProperties "Box001" width:510 height:400
 	)
 	on SetButton pressed do
 	(
+		
+		if LayerCheckBox.checked do
+			(
+				Local Obj = $selection.count
+				if Obj <2 then
+				(
+					setUserProp $ "layer" RenderLayerListBox.selected
+				)else
+				(
+					for x= 1 to Obj do
+					(
+						setUserProp $[x] "layer" RenderLayerListBox.selected
+					)
+				)
+				
+				messagebox "Selected Object(s) Layer has been set" title:"ATTENTION"
+			)
 		if AnimatedModelCheck.checked do
 			(
 				Local Obj = $selection.count
 				if Obj <2 then
 				(
 					setUserProp $ "Animated_Object" true
+					setUserProp $ "Animated_Object_Type" AnimatedModelTypeList.selected
 				)else
 				(
 					for x= 1 to Obj do
 					(
 						setUserProp $[x] "Animated_Object" true
+						setUserProp $[x] "Animated_Object_Type" AnimatedModelTypeList.selected
 					)
 				)
 				
@@ -176,6 +208,33 @@ rollout SetProperties "Box001" width:510 height:400
 			if ( _Lights ==1 or _Lights ==3) then
 				(
 					setUserProp $ "export_light" true
+					messagebox "Selected Lights are going to be exported" title:"ATTENTION"
+				)else
+				(
+					messagebox "Some selected objects are not lights" title:"ATTENTION"
+				)
+		)
+		
+		if LightStateCheckBox.checked do
+		(
+			local _Lights = isLight()
+			if ( _Lights ==1 or _Lights ==3) then
+				(
+					setUserProp $ "light_state" false
+					messagebox "Selected Lights are going to be set to OFF state" title:"ATTENTION"
+				)else
+				(
+					messagebox "Some selected objects are not lights" title:"ATTENTION"
+				)
+		)
+		
+		
+		if ShadowMapCheckBox.checked do
+		(
+			local _Lights = isLight()
+			if ( _Lights ==1 or _Lights ==3) then
+				(
+					setUserProp $ "generate_shadow_map" true
 					messagebox "Selected Lights are going to be exported" title:"ATTENTION"
 				)else
 				(

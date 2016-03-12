@@ -1,6 +1,5 @@
 filein "Functions.ms"
 
-
 function AnimatedCameraExport  _Path=
 (
 	AnimatedCamera= GetCores()
@@ -18,18 +17,19 @@ function AnimatedCameraExport  _Path=
 			for j =1 to keys do
 			(
 				key_time = AnimatedCamera[i].position.controller.keys[j].time
+				_time = key_time/framerate
+				if  _time == 0 do
+					_time = 0 as float
 				at time key_time current_pos = TranslationToRH AnimatedCamera[i].pos
-				at time key_time current_lookat = TranslationToRH AnimatedCamera[i].Target.pos
+				---at time key_time current_lookat = TranslationToRH AnimatedCamera[i].Target.pos
+				at time key_time current_lookat = TranslationToRH (AnimatedCamera[i].pos+((point3 0 0 -1) * AnimatedCamera[i].transform.rotation))
 				at time key_time current_fov = AnimatedCamera[i].fov
-				at time key_time current_near = AnimatedCamera[i].nearrange
+				at time key_time current_near = AnimatedCamera[i].nearclip
 				at time key_time current_far = AnimatedCamera[i].farrange
-				format "<key time=\"%\" pos=\"% % %\" look_at=\"% % %\" fov=\"%\" near_plane=\"%\" far_plane=\"%\"/> \n" key_time current_pos.x current_pos.y current_pos.z current_lookat.x current_lookat.y current_lookat.z  current_fov current_near current_far to: file
+				format "<key time=\"%\" pos=\"% % %\" look_at=\"% % %\" fov=\"%\" near_plane=\"%\" far_plane=\"%\"/> \n" _time current_pos.x current_pos.y current_pos.z current_lookat.x current_lookat.y current_lookat.z  current_fov current_near current_far to: file
 			)
 			format "</camera_key_controller> \n" to:file
 			close file 
 		)
 	)		
 )
-
-
-

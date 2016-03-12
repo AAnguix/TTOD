@@ -1,10 +1,12 @@
 fileIn "Functions.ms"
-fileIn "ExportMeshes.ms"
+fileIn "MultiExportMeshes.ms"
 filein "ExportStaticMeshes.ms"
 fileIn "ExportRenderableObjetcs.ms"
 fileIn "ExportMaterials.ms"
 fileIn "CopyMaterials.ms"
 fileIn "ExportLights.ms"
+fileIn "AnimatedObjectExport.ms"
+filein "corecheck.ms"
 
 utility Exporter "Exporter" width:180 height:316
 (
@@ -25,10 +27,18 @@ utility Exporter "Exporter" width:180 height:316
 	
 	on Exporter open do
 	(
-		PathText.text ="D:\\Game\\Data\\Level"
+		--PathText.text ="D:\\Game\\Data\\Level"
+		PathText.text ="D:\\3DS\\EscenaTTODfinal005"
 		
 		local levels=#("","level1","level2","main menu","select player")
 		LevelsDropDownList.items=levels
+		
+		
+		l_RenderableObjects=#()
+		l_Cores=#()
+		CoreAndRenderable &l_Cores &l_RenderableObjects
+		
+		
 	)
 	
 	on SetPathButton pressed do
@@ -78,6 +88,7 @@ utility Exporter "Exporter" width:180 height:316
 	on CameraButton pressed do
 	(   
 		ExportCameras PathText.text
+		
 	)
 	
 	on MaterialsButton pressed do
@@ -88,20 +99,27 @@ utility Exporter "Exporter" width:180 height:316
 	on StaticMeshManagerButton pressed do
 	(   
 		
-		ExportStaticMeshes PathText.text
+		ExportStaticMeshes l_Cores PathText.text
 	)
 	
 	on SceneButton pressed do
 	(   
-		ExportSceneMeshes PathText.text
-		ExportLights PathText.text
-		RenderableObjects PathText.text
-		ExportStaticMeshes PathText.text
+		local l_Cores=#()
+		local l_RenderableObjects=#()
+		CoreAndRenderable &l_Cores &l_RenderableObjects
+		
+		RenderableObjects l_RenderableObjects PathText.text
+		ExportStaticMeshes l_Cores PathText.text
+		--ExportCameras PathText.text
+		--AnimatedCameraExport PathText.text
+		--PathText.text
 		ExportMaterials PathText.text
 		CopySceneMaterials PathText.text
-		ExportCameras PathText.text
-		AnimatedCameraExport PathText.text
-		AnimatedObjectExport PathText.text
+		--ExportSceneMeshes PathText.text
+		ExportSceneMeshes l_Cores PathText.text --PARA VERSION AVANZADA
+	
+		--AnimatedObjectExport PathText.text
+		
 	)
 	
 )

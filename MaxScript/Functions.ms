@@ -31,17 +31,17 @@ function GetInstances =
 
 fn GetYaw transform =
 (
-	return -(transform as eulerangles).z
+	return degtorad(-(transform as eulerangles).z)
 )
 
 fn GetPitch transform =
 (
-	return -(transform as eulerangles).y
+	return degtorad(-(transform as eulerangles).y)
 )
 
 fn GetRoll transform =
 (
-	return (transform as eulerangles).x
+	return degtorad((transform as eulerangles).x)
 )
 
 fn TranslationToRH translation =
